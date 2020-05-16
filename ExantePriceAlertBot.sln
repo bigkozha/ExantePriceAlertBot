@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30011.22
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExantePriceAlertBot", "ExantePriceAlertBot\ExantePriceAlertBot.csproj", "{6016A7EF-8E75-4E24-A03B-B2639B4978F5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6016A7EF-8E75-4E24-A03B-B2639B4978F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6016A7EF-8E75-4E24-A03B-B2639B4978F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6016A7EF-8E75-4E24-A03B-B2639B4978F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6016A7EF-8E75-4E24-A03B-B2639B4978F5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FD334584-73B1-4F65-8030-98EA86582D7C}
+	EndGlobalSection
+EndGlobal
