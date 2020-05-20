@@ -21,7 +21,7 @@ namespace ExantePriceAlertBot.Services
         {
             try
             {
-                _restClient.Authenticator = new HttpBasicAuthenticator(_applicationId, _accessKey);
+                _restClient.Authenticator = new HttpBasicAuthenticator(_applicationId, _accessKey); 
                 var request = new RestRequest($"md/2.0/feed/{symbolId}/last");
                 var instruments = await _restClient.GetAsync<List<Instrument>>(request);
 

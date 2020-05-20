@@ -12,17 +12,20 @@ namespace ExantePriceAlertBot
 {
     public static class CheckPrice
     {
+        private static readonly string _botToken = Environment.GetEnvironmentVariable("BotToken");
+        private static readonly string[] _chatIds = Environment.GetEnvironmentVariable("ChatIds").Split(" ");
+        private static readonly string[] _symbolIds = Environment.GetEnvironmentVariable("SymbolsToCheck").Split(" ");
+
         [FunctionName("CheckPrice")]
         public static void Run([TimerTrigger("0 */30 * * * *")]TimerInfo myTimer, ILogger log)
         {
             log.LogInformation($"C# Timer trigger function executed at: {DateTime.Now}");
 
-            var symbolIds = Environment.GetEnvironmentVariable("SymbolsToCheck").Split(" ");
             var symbolTreshHoldPriceDict = new Dictionary<string, decimal>();
 
-            for (int i = 0; i < symbolIds.Length-1; i+=2)
+            for (int i = 0; i < _symbolIds.Length-1; i+=2)
             {
-                symbolTreshHoldPriceDict.Add(symbolIds[i], Convert.ToDecimal(symbolIds[i + 1]));
+                symbolTreshHoldPriceDict.Add(_symbolIds[i], Convert.ToDecimal(_symbolIds[i + 1]));
             }
 
             try
@@ -33,12 +36,12 @@ namespace ExantePriceAlertBot
 
                     if (currentPrice <= symbolId.Value)
                     {
-                        var botToken = Environment.GetEnvironmentVariable("BotToken");
-                        var chatIds = Environment.GetEnvironmentVariable("ChatIds").Split(" ");
-
-                        foreach (var chatId in chatIds)
+                        foreach (var chatId in _chatIds)
                         {
-                            RestClient restClient = new RestClient($"https://api.telegram.org/bot{botToken}/sendMessage?chat_id={chatId}&text={symbolId.Key}%20price%20ALLERT%20{currentPrice}");
+                            RestClient restClient = new RestClient($"https://api.telegram.org/bot{_botToken}/sendMessage?" +
+                                $"chat_id={chatId}" +
+                                $"&text={symbolId.Key}%20price%20ALLERT%20{currentPrice}");
+
                             restClient.Execute(new RestRequest(Method.GET));
                         }
                     }
